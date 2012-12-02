@@ -7,6 +7,7 @@
     <groupId>ZooKeeperController</groupId>
     <artifactId>ZooKeeperController</artifactId>
     <version>1.0</version>
+    <packaging>war</packaging>
     <properties>
         <spring.version>3.0.5.RELEASE</spring.version>
     </properties>
