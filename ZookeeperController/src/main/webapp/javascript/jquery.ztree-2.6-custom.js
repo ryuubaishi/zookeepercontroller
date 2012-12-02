@@ -193,7 +193,8 @@
                 collapse:null,
                 asyncConfirmData:null,
                 asyncSuccess:null,
-                asyncError:null
+                asyncError:null,
+                selectNode:null
             }
         };
 
@@ -2072,6 +2073,7 @@
             $("#" + treeNode.tId + IDMark_A).addClass(Class_CurSelectedNode);
         }
         addTreeDom(setting, treeNode);
+        tools.apply(setting.callback.selectNode, [null,  null, treeNode, null]);
         setting.curTreeNode = treeNode;
     }
 

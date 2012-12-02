@@ -94,7 +94,7 @@ public class ZkOptionServiceImpl implements ZkOptionService{
         if(zkConn!=null){
             try {
                 Stat  stat = zkConn.createZookeeper().setData(path,content.getBytes(), -1);
-                System.out.print("stat:"+stat);
+                System.out.print("stat:aversion:"+stat.getAversion()+"|"+stat.getCversion());
                 zkConn.close();
             } catch (InterruptedException e) {
                 e.printStackTrace();

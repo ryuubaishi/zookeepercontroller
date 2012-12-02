@@ -41,6 +41,18 @@ public class TreeController {
         return connection;
     }
 
+    @RequestMapping(value = "/getNodeData")
+    public String getNodeData(@RequestParam(required = false)String path,@RequestParam(required = true)String zpath,@RequestParam(required = true)String connectStr,HttpServletRequest request,HttpServletResponse response) throws IOException, InterruptedException, KeeperException {
+
+        ZookeeperConnection connection = getConnection();
+        connection.setConnectString(connectStr);
+        ValueNode vn = zkOptionServiceImpl.getValueNode(zpath, connection);
+        ZTree zTree = ConvertTreeNode.convertValueNode(vn);
+        String json = Bean2ViewUtil.cvtTree2Json(zTree);
+        response.setContentType("application/json;charset=UTF-8");
+        response.getOutputStream().write(json.getBytes());
+        return null;
+    }
 
     @RequestMapping(value = "/getPathData")
     public String showTreeData(@RequestParam(required = false)String path,@RequestParam(required = true)String zpath,@RequestParam(required = true)String connectStr,HttpServletRequest request,HttpServletResponse response) throws IOException, InterruptedException, KeeperException {
@@ -56,10 +68,18 @@ public class TreeController {
     }
     @RequestMapping(value = "/removeZKNode")
     public String removeZKNode(@RequestParam(required = true)String zpath,@RequestParam(required = true)String connectStr,HttpServletRequest request,HttpServletResponse response) throws IOException {
+        response.setContentType("application/json;charset=UTF-8");
+
+        if("/".equals(zpath)){
+            Set connSet  = null;
+             removeConnSet(request, connectStr);
+            response.getOutputStream().write("{\"result\":1}".getBytes());
+            return null;
+        }
         ZookeeperConnection connection = getConnection();
         connection.setConnectString(connectStr);
         boolean result = zkOptionServiceImpl.deletePath(zpath,connection);
-        response.setContentType("application/json;charset=UTF-8");
+
         if(result) {
             response.getOutputStream().write("{\"result\":1}".getBytes());
         }
@@ -67,6 +87,15 @@ public class TreeController {
             response.getOutputStream().write("{\"result\":0}".getBytes());
         }
         return null;
+    }
+
+    private Set removeConnSet(HttpServletRequest request, String connectStr) throws IOException {
+        Set<String> connSet = (Set<String>) JSONFile.readConnects();
+        if(StringUtil.isNotEmpty(connectStr)&&connSet.contains(connectStr)){
+            connSet.remove(connectStr);
+            JSONFile.persistConnect(connSet);
+        }
+        return  connSet;
     }
 
     @RequestMapping(value = "/addZKNode")
