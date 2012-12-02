@@ -252,7 +252,7 @@ $(function () {
                                 $.ajax({
                                     async:false,
                                     type:"POST",
-                                    url:"<%=basepath%>/addRootNode",
+                                    url:"<%=basepath%>/addRootNode.do",
                                     data:"connectStr=" + $("#connectStr").val(),
                                     dataType:"json",
                                     success:function (msg) {
