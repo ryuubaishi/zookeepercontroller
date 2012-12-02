@@ -82,7 +82,7 @@ function zTreeOnAdd(event, treeId, treeNode) {
                                 $.ajax({
                                     async:false,
                                     type:"POST",
-                                    url:"<%=basepath%>/addZKNode",
+                                    url:"<%=basepath%>/addZKNode.do",
                                     data:"zpath=" + treeNode.zpath + "&nodeName=" + $("#nodeName").val() + "&nodeValue=" + $("#nodeValue").val() + "&connectStr=" + treeNode.connStr,
                                     dataType:"json",
                                     success:function (msg) {
@@ -125,7 +125,7 @@ function zTreeBeforeDel(treeId, treeNode) {
         $.ajax({
             async:false,
             type:"POST",
-            url:"<%=basepath%>/removeZKNode",
+            url:"<%=basepath%>/removeZKNode.do",
             data:"zpath=" + treeNode.zpath + "&connectStr=" + treeNode.connStr,
             dataType:"json",
             success:function (msg) {
@@ -150,7 +150,7 @@ function zTreeOnClick(event, treeId, treeNode) {
     $.ajax({
         async:false,
         type:"POST",
-        url:"<%=basepath%>/getNodeData",
+        url:"<%=basepath%>/getNodeData.do",
         data:"connectStr=" + treeNode.connStr + "&zpath=" + treeNode.zpath,
         dataType:"text",
         success:function (msg) {
@@ -225,7 +225,7 @@ function getUrl(treeNode) {
     if (treeNode) {
         var param = "zpath=" + treeNode.zpath + "&connectStr=" + treeNode.connStr;
 //		return "asyncData/nodeForHugeData.jsp?" + param;
-        return "<%=basepath%>/getPathData?" + param;
+        return "<%=basepath%>/getPathData.do?" + param;
     }
 }
 
@@ -288,7 +288,7 @@ $(function () {
             $.ajax({
                 async:false,
                 type:"POST",
-                url:"<%=basepath%>/modifyNode",
+                url:"<%=basepath%>/modifyNode.do",
                 data:"connectStr=" + zkTree.getSelectedNode().connStr + "&zpath=" + zkTree.getSelectedNode().zpath + "&content=" + $("#content").val(),
                 dataType:"json",
                 success:function (msg) {

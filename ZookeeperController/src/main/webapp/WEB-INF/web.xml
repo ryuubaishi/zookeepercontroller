@@ -13,31 +13,7 @@
         <param-value>classpath:spring-beans.xml</param-value>
     </context-param>
 
-    <servlet-mapping>
-        <servlet-name>default
-        </servlet-name>
-        <url-pattern>*.jpg</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>default
-        </servlet-name>
-        <url-pattern>*.png</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>default
-        </servlet-name>
-        <url-pattern>*.gif</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.js
-        </url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>default
-        </servlet-name>
-        <url-pattern>*.css</url-pattern>
-    </servlet-mapping>
+
 
 
     <servlet>
@@ -49,7 +25,7 @@
 
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
     <filter>
@@ -70,7 +46,7 @@
 
     <filter-mapping>
         <filter-name>Spring character encoding filter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*</url-pattern>
     </filter-mapping>
 
     <!--<filter>-->
@@ -94,11 +70,4 @@
         <servlet-name>spring</servlet-name>
     </filter-mapping>
 
-
-    <welcome-file-list>
-        <welcome-file>/jsp/login.jsp</welcome-file>
-    </welcome-file-list>
-    <session-config>
-        <session-timeout>60</session-timeout>
-    </session-config>
 </web-app>
