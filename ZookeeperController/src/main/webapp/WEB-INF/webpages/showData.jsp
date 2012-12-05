@@ -1,11 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: PageLiu
-  Date: 12-11-28
-  Time: 下午11:01
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ include file="common/include.jsp" %>
 <html>
 <link rel="stylesheet" href="<%=basepath%>/css/zTreeStyle/demo.css" type="text/css">
@@ -103,14 +96,14 @@ function zTreeOnAdd(event, treeId, treeNode) {
                             }
                             $(this).dialog("close");
                         },
-                        class:"btn btn-primary"
+                        "class":"btn btn-primary"
                     },
                     Cancel:{
                         text:"Cancel",
                         click:function () {
                             $(this).dialog("close");
                         },
-                        class:"btn"
+                        "class":"btn"
                     }
 
                 }
@@ -224,7 +217,7 @@ function zTreeAjaxError(event, treeId, treeNode, XMLHttpRequest, textStatus, err
 function getUrl(treeNode) {
     if (treeNode) {
         var param = "zpath=" + treeNode.zpath + "&connectStr=" + treeNode.connStr;
-//		return "asyncData/nodeForHugeData.jsp?" + param;
+//  	return "asyncData/nodeForHugeData.jsp?" + param;
         return "<%=basepath%>/getPathData.do?" + param;
     }
 }
@@ -270,12 +263,12 @@ $(function () {
 
                                 $(this).dialog("close");
                             },
-                            class:"btn btn-primary"
+                            "class":"btn btn-primary"
                         },
                         Cancel:{text:"Cancel", click:function () {
                             $(this).dialog("close");
                         },
-                            class:"btn"
+                            "class":"btn"
                         }
                     }
                 }
